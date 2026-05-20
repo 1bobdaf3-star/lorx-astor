@@ -2,163 +2,260 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- يمنع الكاش قدر الإمكان -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Lorx Astor</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family: Arial, sans-serif;
 }
 
 body{
-    width:100%;
     height:100vh;
-    overflow:hidden;
-    background:#02010a;
-    position:relative;
-    font-family:Arial;
-}
+    /* التعديل الوحيد هنا */
+    overflow-y:auto;
+    overflow-x:hidden;
 
-/* الخلفية */
-body::before{
-    content:"";
-    position:absolute;
-    width:300%;
-    height:300%;
-    top:-100%;
-    left:-100%;
-    z-index:0;
-    pointer-events:none;
-
-    background:
-    radial-gradient(circle at top right, rgba(255,0,140,0.35), transparent 20%),
-    radial-gradient(circle at bottom left, rgba(255,0,140,0.35), transparent 20%),
-    radial-gradient(circle at bottom right, rgba(0,140,255,0.35), transparent 20%),
-    radial-gradient(circle at left center, rgba(0,140,255,0.25), transparent 20%),
-    repeating-linear-gradient(135deg, transparent 0px, transparent 120px, rgba(0,180,255,0.15) 122px, transparent 124px),
-    repeating-linear-gradient(315deg, transparent 0px, transparent 120px, rgba(255,0,140,0.15) 122px, transparent 124px);
-
-    animation:bgMove 30s ease-in-out infinite;
-}
-
-@keyframes bgMove{
-    0%{transform:translate(0,0) rotate(0deg);}
-    50%{transform:translate(3%,3%) rotate(0.8deg);}
-    100%{transform:translate(0,0) rotate(0deg);}
-}
-
-/* اللوجو */
-.logo{
-    position:absolute;
-    top:25px;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    gap:10px;
-    align-items:center;
-    font-size:32px;
     color:white;
-    z-index:10;
-    text-shadow:0 0 10px #00aaff, 0 0 20px #ff008c;
-}
-
-.verified{
-    width:28px;height:28px;
-    border-radius:50%;
-    background:#ff0000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-size:15px;
-    box-shadow:0 0 10px red,0 0 20px red;
-}
-
-/* ===== المربع الجديد ===== */
-.race-box{
-    position:absolute;
-    top:120px;
-    left:50%;
-    transform:translateX(-50%);
-
-    width:90%;
-    max-width:360px;
-    height:60vh;
-    max-height:500px;
-
-    background:linear-gradient(180deg, rgba(0,140,255,0.25), rgba(255,0,100,0.25));
-    border:2px solid rgba(255,255,255,0.15);
-    border-radius:20px;
-
-    backdrop-filter:blur(8px);
-    z-index:10;
-
-    box-shadow:
-    0 0 20px rgba(0,140,255,0.4),
-    0 0 20px rgba(255,0,100,0.3);
-
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding:15px;
+    background:#05010f;
+}
+
+/* ===== الخلفية ===== */
+.bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.fighter{
+    position:absolute;
+    width:40px;
+    height:90px;
+    background:linear-gradient(to bottom, transparent, black);
+    opacity:0.35;
+    border-radius:10px;
+    animation:fightMove 8s infinite linear;
+}
+
+/* رأس */
+.fighter::before{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:black;
+    border-radius:50%;
+    top:-18px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* سيف */
+.fighter::after{
+    content:"";
+    position:absolute;
+    width:3px;
+    height:40px;
+    background:silver;
+    right:-5px;
+    top:20px;
+    transform:rotate(20deg);
+    opacity:0.6;
+}
+
+@keyframes fightMove{
+    0%{transform:translateY(120vh) translateX(0);}
+    50%{transform:translateY(40vh) translateX(40px);}
+    100%{transform:translateY(-120vh) translateX(-30px);}
+}
+
+.f1{left:10%;}
+.f2{left:30%; animation-delay:1s;}
+.f3{left:50%; animation-delay:2s;}
+.f4{left:70%; animation-delay:3s;}
+.f5{left:85%; animation-delay:4s;}
+
+/* العنوان */
+.header{
+    margin-top:25px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+/* التايمر */
+.timer-container{
+    margin-top:30px;
+    display:flex;
     gap:12px;
-
-    overflow:auto;
 }
 
-/* عنوان */
-.race-title{
-    color:white;
-    font-size:18px;
-    text-shadow:0 0 10px cyan;
+.time-box{
+    width:90px;
+    height:90px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    backdrop-filter: blur(8px);
 }
 
-/* المتسابق */
-.player{
+.time-box span{
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* المتسابقين */
+.contestants{
+    margin-top:40px;
     width:90%;
-    padding:12px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
 
-    background:rgba(0,0,0,0.35);
-    border:1px solid rgba(255,255,255,0.1);
+.box{
+    padding:18px;
     border-radius:12px;
-
-    color:white;
     text-align:center;
-
-    box-shadow:0 0 10px rgba(0,140,255,0.2);
+    font-size:18px;
+    background:rgba(255,255,255,0.08);
 }
 
-.player.red{
-    box-shadow:0 0 10px rgba(255,0,100,0.3);
+.people-box{
+    margin-top:30px;
+    width:90%;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    text-align:center;
 }
 
-.player.blue{
-    box-shadow:0 0 10px rgba(0,140,255,0.3);
+.people-box h3{
+    margin-bottom:15px;
+    font-size:18px;
 }
 
+.names{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.names div{
+    padding:10px;
+    border-radius:10px;
+    background:rgba(0,0,0,0.3);
+    font-weight:bold;
+}
+
+.first{border:2px solid gold;}
+.second{border:2px solid silver;}
+.third{border:2px solid #cd7f32;}
 </style>
 </head>
 
 <body>
 
-<div class="logo">
-    Lorx Astor <span class="verified">✔</span>
+<div class="bg">
+    <div class="fighter f1"></div>
+    <div class="fighter f2"></div>
+    <div class="fighter f3"></div>
+    <div class="fighter f4"></div>
+    <div class="fighter f5"></div>
 </div>
 
-<!-- المربع -->
-<div class="race-box">
+<div class="header">Lorx Astor</div>
 
-    <div class="race-title">🏁 المتسابقين</div>
+<div class="timer-container">
+    <div class="time-box">
+        <span id="h">0</span>
+        <label>Hours</label>
+    </div>
 
-    <div class="player blue">乂ATRツ๛ ¹</div>
-    <div class="player red">Alshenawy ²</div>
-    <div class="player blue">BOB ³</div>
-    <div class="player red">Essam Alkrwan ⁴</div>
-    <div class="player red">bablu ⁵</div>
+    <div class="time-box">
+        <span id="m">00</span>
+        <label>Minutes</label>
+    </div>
 
+    <div class="time-box">
+        <span id="s">00</span>
+        <label>Seconds</label>
+    </div>
 </div>
+
+<div class="contestants">
+    <div class="box first">🥇 المركز الأول</div>
+    <div class="box second">🥈 المركز الثاني</div>
+    <div class="box third">🥉 المركز الثالث</div>
+</div>
+
+<div class="people-box">
+    <h3>الأشخاص المشاركين</h3>
+    <div class="names">
+        <div>乂ATRツ๛</div>
+        <div>Alshenawy</div>
+        <div>BOB</div>
+        <div>Essam Alkrwan</div>
+        <div>bablu</div>
+    </div>
+</div>
+
+<script>
+const duration = 62 * 60 * 60 * 1000;
+
+let start = localStorage.getItem("startTime");
+
+if(!start){
+    start = Date.now();
+    localStorage.setItem("startTime", start);
+}
+
+const endTime = Number(start) + duration;
+
+function update(){
+    let now = Date.now();
+    let diff = Math.floor((endTime - now) / 1000);
+
+    if(diff < 0) diff = 0;
+
+    let h = Math.floor(diff / 3600);
+    let m = Math.floor((diff % 3600) / 60);
+    let s = diff % 60;
+
+    document.getElementById("h").innerText = h;
+    document.getElementById("m").innerText = m.toString().padStart(2,'0');
+    document.getElementById("s").innerText = s.toString().padStart(2,'0');
+}
+
+setInterval(update, 1000);
+update();
+
+(function(){
+    const url = new URL(window.location.href);
+    url.searchParams.set("v", Date.now());
+    window.history.replaceState({}, "", url);
+})();
+</script>
 
 </body>
 </html>
