@@ -155,6 +155,55 @@ body{
     font-size:18px;
 }
 
+.header{
+    margin-top:25px;
+    font-size:30px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.real-badge{
+    width:28px;
+    height:28px;
+    background:#ff2b2b;
+    clip-path: polygon(
+        50% 0%,
+        61% 15%,
+        78% 7%,
+        85% 24%,
+        100% 35%,
+        92% 50%,
+        100% 65%,
+        85% 76%,
+        78% 93%,
+        61% 85%,
+        50% 100%,
+        39% 85%,
+        22% 93%,
+        15% 76%,
+        0% 65%,
+        8% 50%,
+        0% 35%,
+        15% 24%,
+        22% 7%,
+        39% 15%
+    );
+    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 0 12px #ff0000;
+}
+
+.real-badge span{
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+}
+
 .names{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -168,9 +217,9 @@ body{
     font-weight:bold;
 }
 
-.first{border:2px solid gold;}
-.second{border:2px solid silver;}
-.third{border:2px solid #cd7f32;}
+.first{border:2px solid rgb(255, 0, 0);}
+.second{border:2px solid rgb(255, 0, 0);}
+.third{border:2px solid #ff0000;}
 </style>
 </head>
 
@@ -184,7 +233,12 @@ body{
     <div class="fighter f5"></div>
 </div>
 
-<div class="header">Lorx Astor</div>
+<div class="header">
+    Lorx Astor
+    <div class="real-badge">
+        <span>✔</span>
+    </div>
+</div>
 
 <div class="timer-container">
     <div class="time-box">
