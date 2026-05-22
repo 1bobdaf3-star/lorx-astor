@@ -271,6 +271,53 @@ body{
     50%{opacity:0.4; transform:scale(1.05);}
     100%{opacity:1; transform:scale(1);}
 }
+
+.channel-info{
+    margin-top:5px;
+    font-size:12px;
+    color:red;
+    opacity:0.9;
+    font-weight:500;
+    z-index:2;
+}
+
+.whatsapp-btn{
+    display:block;
+    margin-top:15px;
+    padding:12px;
+    text-align:center;
+    background:rgb(255, 0, 0);
+    color:white;
+    font-weight:bold;
+    border-radius:12px;
+    text-decoration:none;
+
+    border:1px solid red;
+
+    box-shadow:0 0 10px red;
+    animation:btnBlink 1.2s infinite;
+    transition:0.2s;
+}
+
+.whatsapp-btn:active{
+    transform:scale(0.97);
+}
+
+/* أنيميشن النور */
+@keyframes btnBlink{
+    0%{
+        box-shadow:0 0 5px red;
+        opacity:1;
+    }
+    50%{
+        box-shadow:0 0 20px red;
+        opacity:0.6;
+    }
+    100%{
+        box-shadow:0 0 5px red;
+        opacity:1;
+    }
+}
 </style>
 </head>
 
@@ -287,6 +334,10 @@ body{
 <div class="header">
     Lorx Astor
     <img src="verify.jpeg" class="verify-img">
+</div>
+
+<div class="channel-info">
+    Channel · 254 followers
 </div>
 
 <div class="timer-container">
@@ -309,13 +360,13 @@ body{
 <div class="contestants">
 
     <div class="row first">
-        <div class="left-box glow delay1">96</div>
+        <div class="left-box glow delay1">98</div>
         <div class="name">𝓐𝔂𝓪𝓷𝓸𝓴𝓸𝓳𝓲</div>
         <div class="right-box glow delay1">🥇 المركز الاول</div>
     </div>
 
     <div class="row second">
-        <div class="left-box glow delay2">76</div>
+        <div class="left-box glow delay2">79</div>
         <div class="name">Mezo Alex ^</div>
         <div class="right-box glow delay2">🥈 المركز الثاني</div>
     </div>
@@ -344,6 +395,8 @@ body{
         <div>Mohamed Ali</div>
     </div>
 </div>
+
+<a class="whatsapp-btn" href="https://wa.me/201555615327" target="_blank">تواصل واتساب</a>
 
 <script>
 const duration = 162 * 60 * 60 * 1000;
