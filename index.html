@@ -22,9 +22,9 @@
 
 body{
     height:100vh;
-    /* التعديل الوحيد هنا */
     overflow-y:auto;
     overflow-x:hidden;
+    position:relative;
 
     color:white;
     display:flex;
@@ -35,66 +35,85 @@ body{
 
 /* ===== الخلفية ===== */
 .bg{
-    position:absolute;
+    position:fixed;
+    top:0;
+    left:0;
     width:100%;
     height:100%;
     overflow:hidden;
-    z-index:-1;
+    z-index:0;
+    pointer-events:none;
 }
 
-.fighter{
+.star{
     position:absolute;
-    width:40px;
-    height:90px;
-    background:linear-gradient(to bottom, transparent, black);
-    opacity:0.35;
-    border-radius:10px;
-    animation:fightMove 8s infinite linear;
+    width:180px;
+    height:2px;
+    background:linear-gradient(to right,#ffffff,#8c7bff,transparent);
+    border-radius:999px;
+    filter:drop-shadow(0 0 10px #8c7bff);
+    opacity:0;
+    transform:rotate(-35deg);
+    animation:meteor 3s linear infinite;
 }
 
-/* رأس */
-.fighter::before{
-    content:"";
-    position:absolute;
-    width:18px;
-    height:18px;
-    background:black;
-    border-radius:50%;
-    top:-18px;
+@keyframes meteor{
+    0%{
+        transform:translate(0,0) rotate(-35deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translate(600px,600px) rotate(-35deg);
+        opacity:0;
+    }
+}
+
+.s1{
+    top:-10%;
+    left:5%;
+    animation-delay:0s;
+}
+
+.s2{
+    top:-5%;
+    left:25%;
+    animation-delay:1s;
+}
+
+.s3{
+    top:-15%;
     left:50%;
-    transform:translateX(-50%);
+    animation-delay:2s;
 }
 
-/* سيف */
-.fighter::after{
-    content:"";
-    position:absolute;
-    width:3px;
-    height:40px;
-    background:silver;
-    right:-5px;
-    top:20px;
-    transform:rotate(20deg);
-    opacity:0.6;
+.s4{
+    top:-8%;
+    left:70%;
+    animation-delay:1.5s;
 }
 
-@keyframes fightMove{
-    0%{transform:translateY(120vh) translateX(0);}
-    50%{transform:translateY(40vh) translateX(40px);}
-    100%{transform:translateY(-120vh) translateX(-30px);}
+.s5{
+    top:-12%;
+    left:85%;
+    animation-delay:2.5s;
 }
-
-.f1{left:10%;}
-.f2{left:30%; animation-delay:1s;}
-.f3{left:50%; animation-delay:2s;}
-.f4{left:70%; animation-delay:3s;}
-.f5{left:85%; animation-delay:4s;}
 
 /* العنوان */
 .header{
     margin-top:25px;
     font-size:30px;
     font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    position:relative;
+    z-index:2;
 }
 
 /* التايمر */
@@ -102,6 +121,8 @@ body{
     margin-top:30px;
     display:flex;
     gap:12px;
+    position:relative;
+    z-index:2;
 }
 
 .time-box{
@@ -129,6 +150,8 @@ body{
     display:flex;
     flex-direction:column;
     gap:15px;
+    position:relative;
+    z-index:2;
 }
 
 .box{
@@ -148,21 +171,13 @@ body{
     border:1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(8px);
     text-align:center;
+    position:relative;
+    z-index:2;
 }
 
 .people-box h3{
     margin-bottom:15px;
     font-size:18px;
-}
-
-.header{
-    margin-top:25px;
-    font-size:30px;
-    font-weight:bold;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
 }
 
 .verify-img{
@@ -187,17 +202,86 @@ body{
 .first{border:2px solid rgb(255, 0, 0);}
 .second{border:2px solid rgb(255, 0, 0);}
 .third{border:2px solid #ff0000;}
+
+.row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px;
+    margin-top:10px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+.left-box{
+    min-width:55px;
+    min-height:40px;
+    padding:6px 10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,0.4);
+    border-radius:10px;
+
+    font-weight:bold;
+    text-align:center;
+}
+
+.name{
+    flex:1;
+    text-align:center;
+    font-weight:bold;
+}
+
+.right-box{
+    min-width:55px;
+    min-height:40px;
+    padding:6px 10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+    background:rgba(0,0,0,0.4);
+
+    font-size:12px;
+    font-weight:bold;
+
+    text-align:center;
+
+    word-break:break-word;
+}
+
+.glow{
+    background:red;
+    box-shadow:0 0 15px red;
+    animation:blink 1.2s infinite;
+}
+
+.delay1{ animation-delay:0s; }
+.delay2{ animation-delay:1.2s; }
+.delay3{ animation-delay:2.4s; }
+
+@keyframes blink{
+    0%{opacity:1; transform:scale(1);}
+    50%{opacity:0.4; transform:scale(1.05);}
+    100%{opacity:1; transform:scale(1);}
+}
 </style>
 </head>
 
 <body>
 
 <div class="bg">
-    <div class="fighter f1"></div>
-    <div class="fighter f2"></div>
-    <div class="fighter f3"></div>
-    <div class="fighter f4"></div>
-    <div class="fighter f5"></div>
+    <div class="star s1"></div>
+    <div class="star s2"></div>
+    <div class="star s3"></div>
+    <div class="star s4"></div>
+    <div class="star s5"></div>
 </div>
 
 <div class="header">
@@ -223,9 +307,25 @@ body{
 </div>
 
 <div class="contestants">
-    <div class="box first">🥇 المركز الأول</div>
-    <div class="box second">🥈 المركز الثاني</div>
-    <div class="box third">🥉 المركز الثالث</div>
+
+    <div class="row first">
+        <div class="left-box glow delay1">91</div>
+        <div class="name">𝓐𝔂𝓪𝓷𝓸𝓴𝓸𝓳𝓲</div>
+        <div class="right-box glow delay1">🥇 المركز الاول</div>
+    </div>
+
+    <div class="row second">
+        <div class="left-box glow delay2">71</div>
+        <div class="name">Mezo Alex ^</div>
+        <div class="right-box glow delay2">🥈 المركز الثاني</div>
+    </div>
+
+    <div class="row third">
+        <div class="left-box glow delay3">54</div>
+        <div class="name">Essam Alkrwan</div>
+        <div class="right-box glow delay3">🥉 المركز الثالث</div>
+    </div>
+
 </div>
 
 <div class="people-box">
@@ -239,11 +339,12 @@ body{
         <div>𝓐𝔂𝓪𝓷𝓸𝓴𝓸𝓳𝓲</div>
         <div>Mezo Alex ^</div>
         <div>Salma</div>
+        <div>ᎷᎪᎰᏆᎪ</div>
     </div>
 </div>
 
 <script>
-const duration = 32 * 60 * 60 * 1000;
+const duration = 82 * 60 * 60 * 1000;
 
 // وقت بداية ثابت لكل الناس (غيره مرة واحدة فقط وقت ما تبدأ)
 const start = new Date("2026-05-20T12:00:00").getTime();
