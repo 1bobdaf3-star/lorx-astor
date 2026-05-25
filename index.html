@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- يمنع الكاش قدر الإمكان -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -21,7 +20,7 @@
 }
 
 body{
-    height:100vh;
+    min-height: 100vh; /* تعديل لجعل الصفحة مرنة وتقبل النزول لتحت */
     overflow-y:auto;
     overflow-x:hidden;
     position:relative;
@@ -31,76 +30,7 @@ body{
     flex-direction:column;
     align-items:center;
     background:#05010f;
-}
-
-/* ===== الخلفية ===== */
-.bg{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    z-index:0;
-    pointer-events:none;
-}
-
-.star{
-    position:absolute;
-    width:180px;
-    height:2px;
-    background:linear-gradient(to right,#ffffff,#8c7bff,transparent);
-    border-radius:999px;
-    filter:drop-shadow(0 0 10px #8c7bff);
-    opacity:0;
-    transform:rotate(-35deg);
-    animation:meteor 3s linear infinite;
-}
-
-@keyframes meteor{
-    0%{
-        transform:translate(0,0) rotate(-35deg);
-        opacity:0;
-    }
-
-    10%{
-        opacity:1;
-    }
-
-    100%{
-        transform:translate(600px,600px) rotate(-35deg);
-        opacity:0;
-    }
-}
-
-.s1{
-    top:-10%;
-    left:5%;
-    animation-delay:0s;
-}
-
-.s2{
-    top:-5%;
-    left:25%;
-    animation-delay:1s;
-}
-
-.s3{
-    top:-15%;
-    left:50%;
-    animation-delay:2s;
-}
-
-.s4{
-    top:-8%;
-    left:70%;
-    animation-delay:1.5s;
-}
-
-.s5{
-    top:-12%;
-    left:85%;
-    animation-delay:2.5s;
+    padding-bottom: 180px; /* الفراغ الكبير والمضمون أسفل الصفحة */
 }
 
 /* العنوان */
@@ -218,14 +148,11 @@ body{
     min-width:55px;
     min-height:40px;
     padding:6px 10px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     background:rgba(0,0,0,0.4);
     border-radius:10px;
-
     font-weight:bold;
     text-align:center;
 }
@@ -234,25 +161,24 @@ body{
     flex:1;
     text-align:center;
     font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
 }
 
 .right-box{
     min-width:55px;
     min-height:40px;
     padding:6px 10px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border-radius:10px;
     background:rgba(0,0,0,0.4);
-
     font-size:12px;
     font-weight:bold;
-
     text-align:center;
-
     word-break:break-word;
 }
 
@@ -283,7 +209,7 @@ body{
 
 .whatsapp-btn{
     display:block;
-    margin-top:15px;
+    margin-top:20px;
     padding:12px;
     text-align:center;
     background:rgb(255, 0, 0);
@@ -291,9 +217,7 @@ body{
     font-weight:bold;
     border-radius:12px;
     text-decoration:none;
-
     border:1px solid red;
-
     box-shadow:0 0 10px red;
     animation:btnBlink 1.2s infinite;
     transition:0.2s;
@@ -303,35 +227,10 @@ body{
     transform:scale(0.97);
 }
 
-/* أنيميشن النور */
 @keyframes btnBlink{
-    0%{
-        box-shadow:0 0 5px red;
-        opacity:1;
-    }
-    50%{
-        box-shadow:0 0 20px red;
-        opacity:0.6;
-    }
-    100%{
-        box-shadow:0 0 5px red;
-        opacity:1;
-    }
-}
-
-    body{
-    padding-bottom:120px;
-}
-
-.name{
-    flex:1;
-    text-align:center;
-    font-weight:bold;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:5px;
+    0%{ box-shadow:0 0 5px red; opacity:1; }
+    50%{ box-shadow:0 0 20px red; opacity:0.6; }
+    100%{ box-shadow:0 0 5px red; opacity:1; }
 }
 
 .mini-verify{
@@ -339,286 +238,10 @@ body{
     height:20px;
     object-fit:contain;
 }
-
-/* شاشة البداية */
-#splash{
-    position:fixed;
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:#05010f;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    z-index:999999;
-
-    transition:1.5s ease;
-}
-
-/* اختفاء الشاشة */
-#splash.hide{
-    opacity:0;
-    visibility:hidden;
-}
-
-/* التجميع */
-.smoke-wrap{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-}
-
-/* كلمة LORX ASTOR */
-.smoke-text{
-    position:relative;
-
-    color:white;
-
-    font-size:42px;
-    font-weight:bold;
-
-    letter-spacing:5px;
-
-    margin-bottom:60px;
-
-    opacity:0;
-
-    animation:
-    textShow 2.5s ease forwards;
-
-    filter:drop-shadow(0 0 15px red);
-}
-
-/* الدخان */
-.smoke-text::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:
-    linear-gradient(
-    90deg,
-    red,
-    #ff0000,
-    #ff4444,
-    #ff0000
-    );
-
-    filter:blur(25px);
-
-    opacity:0.8;
-
-    z-index:-1;
-
-    animation:smokeMove 3s linear infinite;
-}
-
-/* حركة الدخان */
-@keyframes smokeMove{
-
-    0%{
-        transform:translateX(-25px);
-    }
-
-    50%{
-        transform:translateX(25px);
-    }
-
-    100%{
-        transform:translateX(-25px);
-    }
-
-}
-
-/* ظهور الكلمة */
-@keyframes textShow{
-
-    0%{
-        opacity:0;
-        transform:scale(0.8);
-        filter:blur(12px);
-    }
-
-    100%{
-        opacity:1;
-        transform:scale(1);
-        filter:blur(0);
-    }
-
-}
-
-/* معرض الصور */
-.gallery{
-    position:relative;
-
-    width:130px;
-    height:200px;
-
-    transform-style:preserve-3d;
-
-    animation:rotate 12s linear infinite;
-}
-
-/* الصور */
-.gallery span{
-    position:absolute;
-
-    width:100%;
-    height:100%;
-
-    transform:
-    rotateY(calc(var(--i) * 72deg))
-    translateZ(230px);
-}
-
-/* الصور */
-.gallery span img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    border-radius:15px;
-
-    border:2px solid rgba(255,255,255,0.2);
-
-    box-shadow:0 0 20px rgba(255,0,0,0.4);
-}
-
-/* دوران */
-@keyframes rotate{
-
-    0%{
-        transform:
-        perspective(1000px)
-        rotateY(0deg);
-    }
-
-    100%{
-        transform:
-        perspective(1000px)
-        rotateY(360deg);
-    }
-
-}
-
-/* تعديل شاشة البداية للموبايل */
-@media (max-width: 768px){
-
-    .smoke-text{
-        font-size:28px;
-        letter-spacing:3px;
-        margin-bottom:30px;
-    }
-
-    .gallery{
-        width:90px;
-        height:140px;
-        animation:rotate 12s linear infinite;
-        transform:scale(0.75);
-    }
-
-    .gallery span{
-        transform:
-        rotateY(calc(var(--i) * 72deg))
-        translateZ(160px);
-    }
-
-    .gallery span img{
-        border-radius:12px;
-    }
-
-    #splash{
-        padding:20px;
-    }
-}
-
-.eid-text{
-    color:#fff;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:10px;
-    letter-spacing:2px;
-    opacity:0;
-    animation:eidShow 2.5s ease forwards;
-    text-shadow:0 0 10px red;
-}
-
-@keyframes eidShow{
-    0%{
-        opacity:0;
-        transform:translateY(-10px);
-        filter:blur(10px);
-    }
-    100%{
-        opacity:1;
-        transform:translateY(0);
-        filter:blur(0);
-    }
-}
 </style>
 </head>
 
 <body>
-
-    <body>
-
-<div id="splash">
-
-    <div class="smoke-wrap">
-
-        <div class="eid-text">عيد سعيد عليكم</div>
-        
-        <h1 class="smoke-text">LORX ASTOR</h1>
-
-        <div class="gallery">
-
-            <span style="--i:1">
-                <img src="1.jpeg">
-            </span>
-
-            <span style="--i:2">
-                <img src="2.jpeg">
-            </span>
-
-            <span style="--i:3">
-                <img src="3.jpeg">
-            </span>
-
-            <span style="--i:4">
-                <img src="4.jpeg">
-            </span>
-
-            <span style="--i:5">
-                <img src="5.jpeg">
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="bg">
-    <div class="star s1"></div>
-    <div class="star s2"></div>
-    <div class="star s3"></div>
-    <div class="star s4"></div>
-    <div class="star s5"></div>
-</div>
 
 <div class="header">
     Lorx Astor
@@ -626,52 +249,38 @@ body{
 </div>
 
 <div class="channel-info">
-    Channel · 267 followers
+    Channel · 265 followers
 </div>
 
 <div class="timer-container">
     <div class="time-box">
-        <span id="h">0</span>
-        <label>Hours</label>
+        <span id="h">24</span>  <label>Hours</label>
     </div>
-
     <div class="time-box">
-        <span id="m">00</span>
-        <label>Minutes</label>
+        <span id="m">00</span>  <label>Minutes</label>
     </div>
-
     <div class="time-box">
-        <span id="s">00</span>
-        <label>Seconds</label>
+        <span id="s">00</span>  <label>Seconds</label>
     </div>
 </div>
 
 <div class="contestants">
 
     <div class="row first">
-        <div class="left-box glow delay1">207</div>
-        <div class="name">
-    BOB
-    <img src="verify.png" class="mini-verify">
-</div>
+        <div class="left-box glow delay1">0</div>
+        
         <div class="right-box glow delay1">🥇 المركز الاول</div>
     </div>
 
     <div class="row second">
-        <div class="left-box glow delay2">120</div>
-        <div class="name">
-    𝓐𝔂𝓪𝓷𝓸𝓴𝓸𝓳𝓲
-    <img src="verify.png" class="mini-verify">
-</div>
+        <div class="left-box glow delay2">0</div>
+        
         <div class="right-box glow delay2">🥈 المركز الثاني</div>
     </div>
 
     <div class="row third">
-        <div class="left-box glow delay3">100</div>
-        <div class="name">
-    Mezo Alex ^
-    <img src="verify.png" class="mini-verify">
-</div>
+        <div class="left-box glow delay3">0</div>
+        
         <div class="right-box glow delay3">🥉 المركز الثالث</div>
     </div>
 
@@ -680,78 +289,11 @@ body{
 <div class="people-box">
     <h3>الأشخاص المشاركين</h3>
     <div class="names">
-        <div>乂ATRツ๛</div>
-        <div>Alshenawy</div>
-        <div class="name">
-    BOB
-    <img src="verify.png" class="mini-verify">
-</div>
-        <div>Essam Alkrwan</div>
-        <div>bablu</div>
-        <div class="name">
-    𝓐𝔂𝓪𝓷𝓸𝓴𝓸𝓳𝓲
-    <img src="verify.png" class="mini-verify">
-</div>
-        <div class="name">
-    Mezo Alex ^
-    <img src="verify.png" class="mini-verify">
-</div>
-        <div>Salma</div>
-        <div>ᎷᎪᎰᏆᎪ</div>
-        <div>IPPO</div>
-        <div>Mohamed Ali</div>
-        <div>LIGHTNING</div>
-        <div>Ali</div>
+        
     </div>
 </div>
 
 <a class="whatsapp-btn" href="https://wa.me/201555615327" target="_blank">تواصل واتساب</a>
-
-<script>
-const duration = 16 * 60 * 60 * 1000;
-
-// وقت بداية ثابت لكل الناس (غيره مرة واحدة فقط وقت ما تبدأ)
-const start = new Date("2026-05-20T12:00:00").getTime();
-
-const endTime = Number(start) + duration;
-
-function update(){
-    let now = Date.now();
-    let diff = Math.floor((endTime - now) / 1000);
-
-    if(diff < 0) diff = 0;
-
-    let h = Math.floor(diff / 3600);
-    let m = Math.floor((diff % 3600) / 60);
-    let s = diff % 60;
-
-    document.getElementById("h").innerText = h;
-    document.getElementById("m").innerText = m.toString().padStart(2,'0');
-    document.getElementById("s").innerText = s.toString().padStart(2,'0');
-}
-
-setInterval(update, 1000);
-update();
-
-(function(){
-    const url = new URL(window.location.href);
-    url.searchParams.set("v", Date.now());
-    window.history.replaceState({}, "", url);
-})();
-</script>
-
-<script>
-
-setTimeout(() => {
-
-    document
-    .getElementById("splash")
-    .classList
-    .add("hide");
-
-}, 5500);
-
-</script>
 
 </body>
 </html>
