@@ -339,10 +339,221 @@ body{
     height:20px;
     object-fit:contain;
 }
+
+/* شاشة البداية */
+#splash{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:#05010f;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:999999;
+
+    transition:1.5s ease;
+}
+
+/* اختفاء الشاشة */
+#splash.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+/* التجميع */
+.smoke-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+/* كلمة LORX ASTOR */
+.smoke-text{
+    position:relative;
+
+    color:white;
+
+    font-size:42px;
+    font-weight:bold;
+
+    letter-spacing:5px;
+
+    margin-bottom:60px;
+
+    opacity:0;
+
+    animation:
+    textShow 2.5s ease forwards;
+
+    filter:drop-shadow(0 0 15px red);
+}
+
+/* الدخان */
+.smoke-text::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    90deg,
+    red,
+    #ff0000,
+    #ff4444,
+    #ff0000
+    );
+
+    filter:blur(25px);
+
+    opacity:0.8;
+
+    z-index:-1;
+
+    animation:smokeMove 3s linear infinite;
+}
+
+/* حركة الدخان */
+@keyframes smokeMove{
+
+    0%{
+        transform:translateX(-25px);
+    }
+
+    50%{
+        transform:translateX(25px);
+    }
+
+    100%{
+        transform:translateX(-25px);
+    }
+
+}
+
+/* ظهور الكلمة */
+@keyframes textShow{
+
+    0%{
+        opacity:0;
+        transform:scale(0.8);
+        filter:blur(12px);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+
+}
+
+/* معرض الصور */
+.gallery{
+    position:relative;
+
+    width:130px;
+    height:200px;
+
+    transform-style:preserve-3d;
+
+    animation:rotate 12s linear infinite;
+}
+
+/* الصور */
+.gallery span{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    transform:
+    rotateY(calc(var(--i) * 72deg))
+    translateZ(230px);
+}
+
+/* الصور */
+.gallery span img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    border:2px solid rgba(255,255,255,0.2);
+
+    box-shadow:0 0 20px rgba(255,0,0,0.4);
+}
+
+/* دوران */
+@keyframes rotate{
+
+    0%{
+        transform:
+        perspective(1000px)
+        rotateY(0deg);
+    }
+
+    100%{
+        transform:
+        perspective(1000px)
+        rotateY(360deg);
+    }
+
+}
 </style>
 </head>
 
 <body>
+
+    <body>
+
+<div id="splash">
+
+    <div class="smoke-wrap">
+
+        <h1 class="smoke-text">LORX ASTOR</h1>
+
+        <div class="gallery">
+
+            <span style="--i:1">
+                <img src="1.jpeg">
+            </span>
+
+            <span style="--i:2">
+                <img src="2.jpeg">
+            </span>
+
+            <span style="--i:3">
+                <img src="3.jpeg">
+            </span>
+
+            <span style="--i:4">
+                <img src="4.jpeg">
+            </span>
+
+            <span style="--i:5">
+                <img src="5.jpeg">
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
 
 <div class="bg">
     <div class="star s1"></div>
@@ -470,6 +681,19 @@ update();
     url.searchParams.set("v", Date.now());
     window.history.replaceState({}, "", url);
 })();
+</script>
+
+<script>
+
+setTimeout(() => {
+
+    document
+    .getElementById("splash")
+    .classList
+    .add("hide");
+
+}, 5500);
+
 </script>
 
 </body>
