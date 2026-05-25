@@ -514,6 +514,61 @@ body{
     }
 
 }
+
+/* تعديل شاشة البداية للموبايل */
+@media (max-width: 768px){
+
+    .smoke-text{
+        font-size:28px;
+        letter-spacing:3px;
+        margin-bottom:30px;
+    }
+
+    .gallery{
+        width:90px;
+        height:140px;
+        animation:rotate 12s linear infinite;
+        transform:scale(0.75);
+    }
+
+    .gallery span{
+        transform:
+        rotateY(calc(var(--i) * 72deg))
+        translateZ(160px);
+    }
+
+    .gallery span img{
+        border-radius:12px;
+    }
+
+    #splash{
+        padding:20px;
+    }
+}
+
+.eid-text{
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+    letter-spacing:2px;
+    opacity:0;
+    animation:eidShow 2.5s ease forwards;
+    text-shadow:0 0 10px red;
+}
+
+@keyframes eidShow{
+    0%{
+        opacity:0;
+        transform:translateY(-10px);
+        filter:blur(10px);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
+}
 </style>
 </head>
 
@@ -525,6 +580,8 @@ body{
 
     <div class="smoke-wrap">
 
+        <div class="eid-text">عيد سعيد عليكم</div>
+        
         <h1 class="smoke-text">LORX ASTOR</h1>
 
         <div class="gallery">
